@@ -1,4 +1,10 @@
-package br.com.foody_delivery.order_tracking.domain.authentication.service;
+package br.com.foody_delivery.order_tracking.domain.user.service;
 
-public interface AuthenticationService {
+import br.com.foody_delivery.order_tracking.domain.user.model.User;
+import br.com.foody_delivery.order_tracking.dto.user.UserRequestDto;
+
+public interface UserService {
+
+    User register(UserRequestDto userRequestDto);
+
 }

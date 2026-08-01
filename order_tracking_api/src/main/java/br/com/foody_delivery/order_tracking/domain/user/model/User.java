@@ -1,4 +1,4 @@
-package br.com.foody_delivery.order_tracking.domain.user.persistence;
+package br.com.foody_delivery.order_tracking.domain.user.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
