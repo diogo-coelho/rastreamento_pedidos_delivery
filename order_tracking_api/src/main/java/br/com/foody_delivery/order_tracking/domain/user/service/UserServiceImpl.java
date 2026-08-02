@@ -4,6 +4,7 @@ import br.com.foody_delivery.order_tracking.domain.user.model.User;
 import br.com.foody_delivery.order_tracking.domain.user.repository.UserRepository;
 import br.com.foody_delivery.order_tracking.dto.user.UserRequestDto;
 import br.com.foody_delivery.order_tracking.exception.user.EmailAlreadyExistsException;
+import br.com.foody_delivery.order_tracking.exception.user.EmailNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +26,8 @@ public class UserServiceImpl implements UserService {
         }
 
         var encryptedPassword = passwordEncoder.encode(data.password());
-
         var user = new User(data.name(), data.email(), encryptedPassword);
         return userRepository.save(user);
     }
+
 }
