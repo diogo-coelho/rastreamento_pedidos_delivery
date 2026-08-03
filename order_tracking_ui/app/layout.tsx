@@ -1,4 +1,4 @@
-import '@/styles/app.scss';
+import '@/styles/index.scss';
 import { AuthProvider } from '@/contexts/AuthContext';
 
 export const metadata = {

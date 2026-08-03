@@ -23,10 +23,11 @@ export default function PrivateLayout({
     return null;
   }
 
-  return <>
-    <div>
+  return (
+    <>
       <Container>
         {children}
       </Container>
-    </div></>;
+    </>
+  );
 }
