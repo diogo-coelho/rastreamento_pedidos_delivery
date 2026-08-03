@@ -51,6 +51,7 @@ public class AddressController {
     ) {
         var address = addressService.createAddressByUser(userId, addressRequestDto);
         return ResponseEntity.ok(new AddressResponseDto(
+                address.getId(),
                 address.getStreet(),
                 address.getCity(),
                 address.getState(),

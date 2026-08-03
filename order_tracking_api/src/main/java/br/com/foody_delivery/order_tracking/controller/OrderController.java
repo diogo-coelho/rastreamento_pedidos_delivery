@@ -123,7 +123,7 @@ public class OrderController {
         return ResponseEntity.ok(orderResponseDto);
     }
 
-    @PatchMapping("/update-status/{orderId}")
+    @PatchMapping("/{orderId}/status")
     @Operation(
             summary = "Atualização de status do pedido",
             description = "Atualiza o status de um pedido existente.")
@@ -172,6 +172,7 @@ public class OrderController {
                         order.getAddress().getCity(),
                         order.getAddress().getState(),
                         order.getAddress().getPostalCode(),
+                        order.getAddress().getCountry(),
                         order.getAddress().getNumber()
                 ),
                 order.getItems().stream()

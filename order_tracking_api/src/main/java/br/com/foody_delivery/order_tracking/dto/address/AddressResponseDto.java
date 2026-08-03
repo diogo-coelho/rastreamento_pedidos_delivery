@@ -1,6 +1,7 @@
 package br.com.foody_delivery.order_tracking.dto.address;
 
 public record AddressResponseDto (
+        String id,
         String street,
         String city,
         String state,
