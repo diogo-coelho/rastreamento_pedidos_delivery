@@ -36,13 +36,13 @@ public class AuthController {
                     content = @Content(schema = @Schema(implementation = AuthResponseDto.class))
             ),
             @ApiResponse(
-                    responseCode = "400",
-                    description = "Dados invalidos para login",
+                    responseCode = "401",
+                    description = "Credenciais inválidas",
                     content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))
             ),
             @ApiResponse(
-                    responseCode = "401",
-                    description = "Credenciais inválidas",
+                    responseCode = "404",
+                    description = "Usuário não encontrado",
                     content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))
             )
     })
@@ -59,13 +59,8 @@ public class AuthController {
                     description = "Logout realizado com sucesso"
             ),
             @ApiResponse(
-                    responseCode = "400",
-                    description = "Dados invalidos para logout",
-                    content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))
-            ),
-            @ApiResponse(
                     responseCode = "401",
-                    description = "Credenciais inválidas",
+                    description = "Usuário não autenticado",
                     content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))
             )
     })

@@ -44,6 +44,11 @@ public class UserController {
                     responseCode = "409",
                     description = "E-mail ja cadastrado",
                     content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Erro interno do servidor",
+                    content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))
             )
     })
     public ResponseEntity<UserResponseDto> register(
