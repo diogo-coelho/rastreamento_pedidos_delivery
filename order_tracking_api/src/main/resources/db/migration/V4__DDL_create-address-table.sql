@@ -1,0 +1,13 @@
+CREATE TABLE addresses (
+    id UUID PRIMARY KEY,
+    user_id UUID NOT NULL,
+    street VARCHAR(255) NOT NULL,
+    number INTEGER NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    state VARCHAR(100) NOT NULL,
+    postal_code VARCHAR(20),
+    country VARCHAR(100) NOT NULL,
+    created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+    updated_at TEXT DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+)

@@ -1,0 +1,11 @@
+CREATE TABLE orders (
+    id UUID PRIMARY KEY,
+    user_id UUID NOT NULL,
+    address_id UUID NOT NULL,
+    total_price DECIMAL(10, 2) NOT NULL,
+    status VARCHAR(50) NOT NULL DEFAULT 'RECEBIDO',
+    created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+    updated_at TEXT DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (address_id) REFERENCES addresses(id) ON DELETE CASCADE
+);

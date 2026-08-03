@@ -5,6 +5,7 @@ import br.com.foody_delivery.order_tracking.exception.auth.AuthenticationGenerat
 import br.com.foody_delivery.order_tracking.exception.auth.AuthenticationVerificationException;
 import br.com.foody_delivery.order_tracking.exception.user.EmailAlreadyExistsException;
 import br.com.foody_delivery.order_tracking.exception.user.EmailNotFoundException;
+import br.com.foody_delivery.order_tracking.exception.user.UserNotFoundException;
 import br.com.foody_delivery.order_tracking.infra.exception.LocalDateTimeStringConverterException;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
@@ -64,6 +65,16 @@ public class GlobalExceptionHandler {
                 .body(new ErrorResponseDto(
                         ex.getMessage(),
                         HttpStatus.BAD_REQUEST.value()
+                ));
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ErrorResponseDto> handleUserNotFoundException(UserNotFoundException ex) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(new ErrorResponseDto(
+                        ex.getMessage(),
+                        HttpStatus.NOT_FOUND.value()
                 ));
     }
 

@@ -52,7 +52,7 @@ public class UserController {
         var user = userService.register(userRequestDto);
 
         var uri = uriComponentsBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri();
-        return ResponseEntity.created(uri).body(new UserResponseDto(user.getName(), user.getEmail()));
+        return ResponseEntity.created(uri).body(new UserResponseDto(user.getId(), user.getName(), user.getEmail()));
     }
 
 }
