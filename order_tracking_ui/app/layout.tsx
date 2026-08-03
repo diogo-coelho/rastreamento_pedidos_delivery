@@ -1,4 +1,5 @@
-import "@/styles/app.scss"
+import '@/styles/app.scss';
+import { AuthProvider } from '@/contexts/AuthContext';
 
 export const metadata = {
   title: 'Foody Delivery - Rastreamento de Pedidos',
@@ -12,8 +13,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <head></head>
-      <body>{children}</body>
+      <head>
+      </head>
+      <body>
+        <AuthProvider>{children}</AuthProvider>
+      </body>
     </html>
   )
 }
