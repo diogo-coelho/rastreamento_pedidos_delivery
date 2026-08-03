@@ -184,7 +184,9 @@ public class OrderController {
                         ))
                         .toList(),
                 order.getTotalPrice(),
-                order.getStatus()
+                order.getStatus(),
+                order.getCreatedAt(),
+                order.getUpdatedAt()
         );
     }
 

@@ -9,3 +9,8 @@ export interface UserResponseData {
   name: string;
   email: string;
 }
+
+type FieldType = {
+  email?: string;
+  password?: string;
+};

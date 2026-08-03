@@ -51,6 +51,7 @@ public class ItemController {
         var items = itemService.getItems();
         var itemResponseList = items.stream()
                 .map(item -> new ItemResponseDto(
+                        item.getId(),
                         item.getName(),
                         item.getDescription(),
                         item.getPrice(),
@@ -84,6 +85,7 @@ public class ItemController {
     public ResponseEntity<ItemResponseDto> createItem(@RequestBody @Valid ItemRequestDto itemRequestDto) {
         var item = itemService.createItem(itemRequestDto);
         var itemResponse = new ItemResponseDto(
+                item.getId(),
                 item.getName(),
                 item.getDescription(),
                 item.getPrice(),

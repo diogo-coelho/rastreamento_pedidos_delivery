@@ -7,6 +7,8 @@ import br.com.foody_delivery.order_tracking.dto.address.AddressRequestDto;
 import br.com.foody_delivery.order_tracking.exception.user.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AddressServiceImpl implements AddressService {
 
@@ -34,5 +36,10 @@ public class AddressServiceImpl implements AddressService {
         );
 
         return addressRepository.save(address);
+    }
+
+    @Override
+    public List<Address> listAddresses() {
+        return addressRepository.findAll();
     }
 }

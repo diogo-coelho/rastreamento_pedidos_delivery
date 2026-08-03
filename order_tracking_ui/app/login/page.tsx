@@ -5,17 +5,13 @@ import { Button, Form, Input } from 'antd';
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { FieldType } from '@/types/user';
 import Container from "@/components/ui/Container";
 import Card from '@/components/ui/Card';
 
 export default function LoginPage() {
   const { signIn, isAuthenticated, loading } = useAuth();
   const router = useRouter();
-
-  type FieldType = {
-    email?: string;
-    password?: string;
-  };
 
   useEffect(() => {
     if (!loading && isAuthenticated) {
@@ -36,10 +32,6 @@ export default function LoginPage() {
     router.replace("/");
   };
 
-  const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
-
   if (loading) {
     return null;
   }
@@ -54,7 +46,6 @@ export default function LoginPage() {
           className="flex flex-col gap-4"
           initialValues={{ remember: true }}
           onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
         >
           <Form.Item
             name="email"

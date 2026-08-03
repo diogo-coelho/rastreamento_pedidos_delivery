@@ -7,7 +7,7 @@ export const listOrders = async () => {
 };
 
 export const createOrder = async (orderData: OrderRequestData) => {
-  const response = await api.post<OrderResponseData>("/order", orderData);
+  const response = await api.post<OrderResponseData>("/order/create", orderData);
   return response.data;
 };
 

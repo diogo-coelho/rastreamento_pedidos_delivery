@@ -6,6 +6,7 @@ import br.com.foody_delivery.order_tracking.dto.address.AddressResponseDto;
 import br.com.foody_delivery.order_tracking.dto.user.UserResponseDto;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public record OrderResponseDto(
@@ -14,6 +15,8 @@ public record OrderResponseDto(
         AddressResponseDto address,
         List<OrderItemResponseDto> items,
         BigDecimal totalPrice,
-        OrderStatus status
+        OrderStatus status,
+        LocalDateTime createdAt,
+        LocalDateTime updatedAt
 ) {
 }

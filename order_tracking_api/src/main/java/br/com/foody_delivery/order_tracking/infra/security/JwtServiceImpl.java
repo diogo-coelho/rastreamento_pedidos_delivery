@@ -40,6 +40,7 @@ public class JwtServiceImpl implements JwtService {
                     .withIssuer(issuer)
                     .withSubject(user.getUsername())
                     .withClaim("name", user.getName())
+                    .withClaim("userId", user.getId())
                     .withExpiresAt(addMinutesUntilExpiration(30))
                     .sign(algorithm);
         } catch (JWTCreationException ex) {

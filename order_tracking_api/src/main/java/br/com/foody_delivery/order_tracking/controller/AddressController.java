@@ -14,6 +14,8 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/address")
 public class AddressController {
@@ -22,6 +24,23 @@ public class AddressController {
 
     public AddressController(AddressService addressService) {
         this.addressService = addressService;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<AddressResponseDto>> listAddresses() {
+        var addresses = addressService.listAddresses();
+        var addressResponseList = addresses.stream()
+                .map(address -> new AddressResponseDto(
+                        address.getId(),
+                        address.getStreet(),
+                        address.getCity(),
+                        address.getState(),
+                        address.getPostalCode(),
+                        address.getCountry(),
+                        address.getNumber()
+                ))
+                .toList();
+        return ResponseEntity.ok(addressResponseList);
     }
 
     @PostMapping("/create/{userId}")

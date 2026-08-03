@@ -7,6 +7,7 @@ export interface ItemRequestData {
 }
 
 export interface ItemResponseData {
+  id?: string;
   name: string;
   description: string;
   price: number;
