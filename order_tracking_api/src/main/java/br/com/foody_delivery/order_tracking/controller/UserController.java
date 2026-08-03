@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    @Operation(summary = "Cadastrar usuario", description = "Cria um novo usuario na base de dados.")
+    @Operation(summary = "Cadastro de usuário", description = "Cria um novo usuário na base de dados.")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "201",

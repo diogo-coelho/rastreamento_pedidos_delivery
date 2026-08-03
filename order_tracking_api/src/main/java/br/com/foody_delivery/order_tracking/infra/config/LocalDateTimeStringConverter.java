@@ -40,7 +40,7 @@ public class LocalDateTimeStringConverter implements AttributeConverter<LocalDat
             try {
                 return LocalDateTime.parse(dbData, formatter);
             } catch (DateTimeParseException ignored) {
-                throw new LocalDateTimeStringConverterException("Formato não suportado: " + dbData);
+                // try next format
             }
         }
 

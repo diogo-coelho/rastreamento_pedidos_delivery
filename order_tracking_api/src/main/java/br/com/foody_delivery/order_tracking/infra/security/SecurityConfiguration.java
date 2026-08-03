@@ -53,8 +53,8 @@ public class SecurityConfiguration {
                                     "/v3/api-docs/**",
                                     "/swagger-ui/**",
                                     "/swagger-ui.html",
-                                    "/user/**",
-                                    "/auth/**").permitAll();
+                                    "/user/register",
+                                    "/auth/login").permitAll();
                             req.anyRequest().authenticated();
                         })
                 .exceptionHandling(this::exceptionHandler)
