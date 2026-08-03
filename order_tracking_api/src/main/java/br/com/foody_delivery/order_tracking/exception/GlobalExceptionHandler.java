@@ -1,8 +1,10 @@
 package br.com.foody_delivery.order_tracking.exception;
 
 import br.com.foody_delivery.order_tracking.dto.error.ErrorResponseDto;
+import br.com.foody_delivery.order_tracking.exception.address.AddressNotFoundException;
 import br.com.foody_delivery.order_tracking.exception.auth.AuthenticationGenerateTokenException;
 import br.com.foody_delivery.order_tracking.exception.auth.AuthenticationVerificationException;
+import br.com.foody_delivery.order_tracking.exception.item.ItemNotFoundException;
 import br.com.foody_delivery.order_tracking.exception.user.EmailAlreadyExistsException;
 import br.com.foody_delivery.order_tracking.exception.user.EmailNotFoundException;
 import br.com.foody_delivery.order_tracking.exception.user.UserNotFoundException;
@@ -70,6 +72,26 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<ErrorResponseDto> handleUserNotFoundException(UserNotFoundException ex) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(new ErrorResponseDto(
+                        ex.getMessage(),
+                        HttpStatus.NOT_FOUND.value()
+                ));
+    }
+
+    @ExceptionHandler(AddressNotFoundException.class)
+    public ResponseEntity<ErrorResponseDto> handleAddressNotFoundException(AddressNotFoundException ex) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(new ErrorResponseDto(
+                        ex.getMessage(),
+                        HttpStatus.NOT_FOUND.value()
+                ));
+    }
+
+    @ExceptionHandler(ItemNotFoundException.class)
+    public ResponseEntity<ErrorResponseDto> handleItemNotFoundException(ItemNotFoundException ex) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(new ErrorResponseDto(

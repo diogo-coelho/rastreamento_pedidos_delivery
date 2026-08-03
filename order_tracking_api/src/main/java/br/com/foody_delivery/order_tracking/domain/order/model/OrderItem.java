@@ -3,6 +3,7 @@ package br.com.foody_delivery.order_tracking.domain.order.model;
 import br.com.foody_delivery.order_tracking.domain.item.model.Item;
 import br.com.foody_delivery.order_tracking.infra.config.LocalDateTimeStringConverter;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
