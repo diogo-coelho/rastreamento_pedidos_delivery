@@ -12,6 +12,7 @@ import br.com.foody_delivery.order_tracking.dto.order.OrderItemRequestDto;
 import br.com.foody_delivery.order_tracking.dto.order.OrderRequestDto;
 import br.com.foody_delivery.order_tracking.exception.address.AddressNotFoundException;
 import br.com.foody_delivery.order_tracking.exception.item.ItemNotFoundException;
+import br.com.foody_delivery.order_tracking.exception.order.OrderNotFoundException;
 import br.com.foody_delivery.order_tracking.exception.user.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,26 @@ public class OrderServiceImpl implements OrderService {
         this.userRepository = userRepository;
         this.addressRepository = addressRepository;
         this.itemRepository = itemRepository;
+    }
+
+    @Override
+    public List<Order> getAllOrders() {
+        return orderRepository.findAll();
+    }
+
+    @Override
+    public Order getOrderById(String orderId) {
+        return orderRepository.findById(orderId)
+                .orElseThrow(() -> new OrderNotFoundException(orderId));
+    }
+
+    @Override
+    public Order updateOrderStatus(String orderId, OrderStatus status) {
+        var order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new OrderNotFoundException(orderId));
+        order.setStatus(status);
+        order.setUpdatedAt(LocalDateTime.now());
+        return orderRepository.save(order);
     }
 
     @Override

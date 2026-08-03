@@ -5,6 +5,7 @@ import br.com.foody_delivery.order_tracking.exception.address.AddressNotFoundExc
 import br.com.foody_delivery.order_tracking.exception.auth.AuthenticationGenerateTokenException;
 import br.com.foody_delivery.order_tracking.exception.auth.AuthenticationVerificationException;
 import br.com.foody_delivery.order_tracking.exception.item.ItemNotFoundException;
+import br.com.foody_delivery.order_tracking.exception.order.OrderNotFoundException;
 import br.com.foody_delivery.order_tracking.exception.user.EmailAlreadyExistsException;
 import br.com.foody_delivery.order_tracking.exception.user.EmailNotFoundException;
 import br.com.foody_delivery.order_tracking.exception.user.UserNotFoundException;
@@ -92,6 +93,16 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ItemNotFoundException.class)
     public ResponseEntity<ErrorResponseDto> handleItemNotFoundException(ItemNotFoundException ex) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(new ErrorResponseDto(
+                        ex.getMessage(),
+                        HttpStatus.NOT_FOUND.value()
+                ));
+    }
+
+    @ExceptionHandler(OrderNotFoundException.class)
+    public ResponseEntity<ErrorResponseDto> handleOrderNotFoundException(OrderNotFoundException ex) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(new ErrorResponseDto(
