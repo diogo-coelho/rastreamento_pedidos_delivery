@@ -1,4 +1,4 @@
-package br.com.foody_delivery.order_tracking.domain.order.model;
+package br.com.foody_delivery.order_tracking.domain.item.model;
 
 import br.com.foody_delivery.order_tracking.infra.config.LocalDateTimeStringConverter;
 import jakarta.persistence.*;
@@ -38,4 +38,19 @@ public class Item {
     @Convert(converter = LocalDateTimeStringConverter.class)
     private LocalDateTime updatedAt;
 
+    public Item() {}
+
+    public Item(
+            @NotBlank String name,
+            @NotBlank String description,
+            @NotNull Double price,
+            @NotBlank String imageUrl
+    ) {
+        this.name = name;
+        this.description = description;
+        this.price = BigDecimal.valueOf(price);
+        this.imageUrl = imageUrl;
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
 }
