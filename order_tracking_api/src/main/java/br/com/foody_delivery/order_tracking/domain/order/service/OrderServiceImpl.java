@@ -62,8 +62,8 @@ public class OrderServiceImpl implements OrderService {
         var user = userRepository.findById(orderRequestDto.userId())
                 .orElseThrow(() -> new UserNotFoundException(orderRequestDto.userId()));
 
-        var address = addressRepository.findByUserId(orderRequestDto.userId())
-                .orElseThrow(() -> new AddressNotFoundException(orderRequestDto.userId()));
+        var address = addressRepository.findById(orderRequestDto.addressId())
+                .orElseThrow(() -> new AddressNotFoundException(orderRequestDto.addressId()));
 
         var order = new Order();
         order.setAddress(address);

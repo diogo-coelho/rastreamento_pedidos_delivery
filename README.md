@@ -189,6 +189,10 @@ Frontend disponível em:
 
 - http://localhost:3000
 
+Para acessar a tela de login, insira o email ```teste1@example.com``` e a senha ```senha123``` para acessar
+a credencial do usuário previamente cadastrado no banco de dados.
+
+
 ## Como subir os projetos juntos com Docker Compose
 
 Na raiz do repositório:

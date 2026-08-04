@@ -20,7 +20,7 @@ export default function DeliveryAddressAccordion({
 }: DeliveryAddressAccordionProps) {
   return (
     <Collapse
-      className="mt-6"
+      className="pb-6 mt-6"
       items={[
         {
           key: "delivery-address",
