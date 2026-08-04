@@ -1,0 +1,42 @@
+services:
+  backend:
+    image: maven:3.9.9-eclipse-temurin-21
+    working_dir: /app
+    command: mvn spring-boot:run
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:sqlite:/app/data/order-tracking.db
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.sqlite.JDBC
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.community.dialect.SQLiteDialect
+      SPRING_FLYWAY_ENABLED: "true"
+      SPRING_FLYWAY_LOCATIONS: classpath:db/migration
+      JWT_SECRET: jwt-secret-key
+      JWT_TIMEZONE: -03:00
+    volumes:
+      - ../order_tracking_api:/app
+      - backend_m2_cache:/root/.m2
+      - backend_sqlite_data:/app/data
+    ports:
+      - "8080:8080"
+
+  frontend:
+    image: node:22-alpine
+    working_dir: /app
+    command: sh -c "npm ci --include=dev && npm run dev -- --webpack --hostname 0.0.0.0 --port 3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8080
+      NODE_ENV: development
+      WATCHPACK_POLLING: "true"
+    volumes:
+      - ../order_tracking_ui:/app
+      - frontend_node_modules:/app/node_modules
+      - frontend_next_cache:/app/.next
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  backend_m2_cache:
+  backend_sqlite_data:
+  frontend_node_modules:
+  frontend_next_cache:
